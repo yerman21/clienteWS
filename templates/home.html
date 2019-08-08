@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Application Home Page</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <form id="formToQR" action="/convertToQR" method="post">
+        <input type="text" name="texto" id="texto">
+        <input type="submit" value="Transformar">
+    </form>
+
+	<label id="msg"></label>
+	<div id="divImg"></div>
+
+ <script type="text/javascript">
+ 	$("#formToQR").on("submit", function(event){
+ 		event.preventDefault();
+
+ 		$("#divImg, #msg").html("");
+
+ 		$.post( "/convertToQR",{texto: $("#texto").val()})
+ 		.then(function(result, textStatus, jqXHR ) {
+	 			console.log(result);
+	 			console.log(textStatus);
+	 			console.log(jqXHR);
+
+	 			if(jqXHR.status == 204){
+	 				$("#divImg, #msg").html("");
+	 				return;
+	 			}
+	 			$("#divImg").html("<img src='data:image/jpg;base64,"+result.img64+"'>");
+	 			$("#msg").html(result.msg);
+ 			}, function(fallo) {
+	 			console.log(fallo);
+	 			alert( "$.get failed!" );
+ 			}
+ 		);
+ 	});
+ </script>
+</body>
+</html>
