@@ -7,7 +7,7 @@
 </head>
 <body>
     <form id="formToQR" action="/convertToQR" method="post">
-        <input type="text" name="texto" id="texto">
+		<input type="text" name="texto" id="texto">
         <input type="submit" value="Transformar">
     </form>
 
@@ -19,17 +19,21 @@
  		event.preventDefault();
 
  		$("#divImg, #msg").html("");
-
- 		$.post( "/convertToQR",{texto: $("#texto").val()})
+		 
+		var macRandom = Math.floor((Math.random() * 1000) + 4);
+ 		$.post( "/convertToQR",{texto: $("#texto").val(), mac: 'mac'+macRandom})
  		.then(function(result, textStatus, jqXHR ) {
 	 			console.log(result);
 	 			console.log(textStatus);
 	 			console.log(jqXHR);
 
 	 			if(jqXHR.status == 204){
-	 				$("#divImg, #msg").html("");
+	 				$("#divImg").html("");
+					 $("#msg").html("El 'texto' es requerido");
 	 				return;
 	 			}
+				window.location = result.url;
+				
 	 			$("#divImg").html("<img src='data:image/jpg;base64,"+result.img64+"'>");
 	 			$("#msg").html(result.msg);
  			}, function(fallo) {
