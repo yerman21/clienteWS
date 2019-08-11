@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Application Home Page</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+</head>
+<body>
+	<h1>VALIDAR DESCUENTOS</h1>
+    <form action="/decodeQR" method="post" enctype="multipart/form-data">
+		<input type="file" name="fileCode" id="fileCode" placeholder="CodigoQR" required><br>
+        <input type="submit" value="VERIFICAR">
+    </form>
+
+	<label id="msg"></label>
+	<div id="divImg"></div>
+</body>
+</html>

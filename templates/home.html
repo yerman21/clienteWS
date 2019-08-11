@@ -6,8 +6,10 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
 </head>
 <body>
+	<h1>TICKES DE DSCUENTOS</h1>
     <form id="formToQR" action="/convertToQR" method="post">
-		<input type="text" name="texto" id="texto">
+		<input type="text" name="producto" id="producto" placeholder="Producto"><br>
+		<input type="text" name="descuento" id="descuento" placeholder="Descuento en %"><br>
         <input type="submit" value="Transformar">
     </form>
 
@@ -19,9 +21,11 @@
  		event.preventDefault();
 
  		$("#divImg, #msg").html("");
-		 
-		var macRandom = Math.floor((Math.random() * 1000) + 4);
- 		$.post( "/convertToQR",{texto: $("#texto").val(), mac: 'mac'+macRandom})
+
+ 		$.post( "/convertToQR",{
+ 			producto: $("#producto").val(),
+ 			descuento: $("#descuento").val()
+ 		})
  		.then(function(result, textStatus, jqXHR ) {
 	 			console.log(result);
 	 			console.log(textStatus);
@@ -29,12 +33,21 @@
 
 	 			if(jqXHR.status == 204){
 	 				$("#divImg").html("");
-					 $("#msg").html("El 'texto' es requerido");
+					 $("#msg").html("Los datos son requeridos");
 	 				return;
 	 			}
-				window.location = result.url;
-				
-	 			$("#divImg").html("<img src='data:image/jpg;base64,"+result.img64+"'>");
+
+				var myWindow = window.open(null, "Ticket Descuento");
+				var htmlString = "<html><head><title></title></head><body>";
+				htmlString += "<h2> Ticket de Descuento</h2>";
+				htmlString += "<img src='data:image/jpg;base64,"+result.img64+"'>";
+				htmlString += "</body></html>";
+
+				myWindow.document.write(htmlString);
+				myWindow.document.close();
+				myWindow.onload = function(){ myWindow.print();	};
+				//myWindow.print();
+
 	 			$("#msg").html(result.msg);
  			}, function(fallo) {
 	 			console.log(fallo);

@@ -4,9 +4,17 @@ class BaseDatos:
 	def __init__(self):
 		self.name = "bd"
 
-	def add_update(self, id, info):
-		self.data[id] = info
-		return self.data[id]
+	def add(self, idd, info):
+		info['status'] = True
+		self.data[idd] = info
+		return self.data[idd]
 
-	def get(self, id):
-		return self.data[id]
+	def updateStatus(self, idd):
+		self.data[idd]['status'] = False
+		return self.data[idd]
+
+	def get(self, idd):
+		return self.data[idd]
+
+	def showAll(self):
+		return self.data
