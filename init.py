@@ -63,6 +63,10 @@ def validateAuth():
 def valid():
     return render_template("lecturaTicket.html")
 
+@app.route("/prueba", methods=["GET"])
+def home():
+    return render_template("home.html", user_name="missael")
+
 @app.route("/convertToQR", methods=["POST"])
 def toQR():
     form = request.form.to_dict(flat=True)
