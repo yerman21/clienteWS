@@ -53,10 +53,11 @@
 	 				return;
 	 			}
 
-				var myWindow = window.open(null, "Ticket Descuento");
+				var myWindow = window.open(null, "Código QR de Descuento");
 				var htmlString = "<html><head><title></title></head><body>";
-				htmlString += "<h2> Ticket de Descuento</h2>";
-				htmlString += "<img src='data:image/jpg;base64,"+result.img64+"'>";
+				htmlString += "<center><h2>Código QR de Descuento</h2></center>";				
+				htmlString += "<center><img width='40%' src='data:image/jpg;base64,"+result.img64+"'></center>";
+				htmlString += "<center><p>Gracias por su preferencia</p></center>";
 				htmlString += "</body></html>";
 
 				myWindow.document.write(htmlString);
