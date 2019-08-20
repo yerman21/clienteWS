@@ -13,11 +13,11 @@ import io
 from random import randint
 from BaseDatos import BaseDatos
 from authentication.auth import Auth
-from flask_restful import Resource, Api
+
 
 #create the application instance
 app = Flask(__name__, template_folder="templates")
-api = Api(app)
+# api = Api(app)
 
 bd = BaseDatos()
 bd.add("user", "junin21", {"phone": "935546214", "nombre": "juanito", "pass": "soltero"})
@@ -120,4 +120,4 @@ def msgRequired(parametro):
 
 # Si estamos ejecutando en modo independiente, ejecute la aplicación
 if __name__ == "__main__":
-    app.run(debug=True, port=8000)
+    app.run(host="172.17.8.6",debug=True, port=8000)
