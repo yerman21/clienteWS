@@ -36,5 +36,5 @@ class Auth(object):
 
 	def to_dict(self):
 		return {"ip": self.ip, "phone": self.phone, "auth_band": self.auth_band}
-
+#estructura de la db en firebase
 #sessionUsuario:{ user_name:{ip: "", phone: "923832", auth_band: None }, user_name2:{ }}

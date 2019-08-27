@@ -52,17 +52,6 @@
 	});
 
 		function confirmChange(user_name){
-			/*$.post( "/validateAuth",{
-	 			user_name: user_name
-	 		})
-	 		.then(function(result, textStatus, jqXHR) {
-	 			console.log(result);
-	 			console.log(jqXHR);
-	 			if(jqXHR.status != 200){
-	 				$("#message").html(result);
-	 				return;
-	 			}
-	 			*/
  			var form = document.createElement("form");
 		    var element1 = document.createElement("input");
 
@@ -75,7 +64,6 @@
 
 		    document.body.appendChild(form);
 		    form.submit();
-			 //});
 		}
 
 	</script>
