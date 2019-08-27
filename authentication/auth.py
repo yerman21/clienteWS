@@ -1,11 +1,8 @@
 import firebase_admin
-from firebase_admin import credentials
 from firebase_admin import firestore
 #from flask_restful import Resource, Api
 
-# Use the application default credentials
-cred = credentials.Certificate("./serviceAccountKey.json")
-firebase_admin.initialize_app(cred)
+firebase_admin.get_app()
 db_firestore = firestore.client()
 
 #class AuthRest(Resource):
@@ -21,7 +18,7 @@ class Auth(object):
 		self.auth_band = False
 
 	def createSessionToValidate(self, username):
-		user_to_auth = Auth(u''+self.ip, u''+self.phone)
+		user_to_auth = Auth(u''+self.ip, u''+str(self.phone))
 		print("insertando createSessionToValidate {}".format(user_to_auth.to_dict()))
 		try:
 			db_firestore.collection(u'UserSession').document(u''+username).set(user_to_auth.to_dict())
