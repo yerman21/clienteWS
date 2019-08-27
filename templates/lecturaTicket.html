@@ -2,15 +2,28 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Application Home Page</title>
+    <title>Validar Descuento</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
 </head>
-<body>
-	<h1>VALIDAR DESCUENTOS</h1>
-    <form action="/decodeQR" method="post" enctype="multipart/form-data">
-		<input type="file" name="fileCode" id="fileCode" placeholder="CodigoQR" required><br>
-        <input type="submit" value="VERIFICAR">
-    </form>
+<body>    
+    <div class="col-lg-6 offset-lg-3">    
+        <div class="card mt-5">
+            <div class="card-header bg-primary text-white ">
+                <h1>VALIDAR DESCUENTO</h1>
+                <a class="btn btn-success float-right" href="./">Atras</a>
+            </div>
+            <div class="card-body">
+                <form action="/decodeQR"  method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="fileCode">Adjunte código QR</label>
+                        <input type="file"  name="fileCode" class="form-control-file"  id="fileCode" placeholder="CodigoQR" required>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Verificar">                  
+                </form>
+            </div>
+        </div>
+    </div>
 
 	<label id="msg"></label>
 	<div id="divImg"></div>

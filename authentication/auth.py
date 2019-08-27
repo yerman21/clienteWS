@@ -1,11 +1,18 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
+#from flask_restful import Resource, Api
 
 # Use the application default credentials
 cred = credentials.Certificate("./serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 db_firestore = firestore.client()
+
+#class AuthRest(Resource):
+#    def get(self, name):
+#        return {"Auth":name}
+#    def post(self, name):
+#        return {"Auth":name}
 
 class Auth(object):
 	def __init__(self, ip, phone):
